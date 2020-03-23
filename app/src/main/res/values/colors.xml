@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="p_color_blue">#4282f2</color>
+    <color name="p_color_blue_ae">#73AEFE</color>
+    <color name="p_color_red">#D43D3D</color>
+    <color name="p_color_blue_tint">#f1f5f8</color>
+    <color name="click_bg">#c7c7c7</color>
+    <color name="menu_bg">#2b2b2b</color>
+    <color name="menu_click_bg">#515151</color>
+    <color name="light_gray">#fff5f5f5</color>
+</resources>

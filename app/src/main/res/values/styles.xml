@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!-- Base application theme. -->
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/p_color_blue</item>
+        <item name="colorPrimaryDark">@color/p_color_blue</item>
+        <item name="colorAccent">@color/p_color_blue</item>
+    </style>
+
+    <!--   启动页面主题 -->
+    <style name="SplashTheme" parent="AppThemeBase">
+        <!-- 欢迎页背景引用刚才写好的 -->
+        <item name="android:windowBackground">@drawable/splash_start</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
+    </style>
+
+</resources>
