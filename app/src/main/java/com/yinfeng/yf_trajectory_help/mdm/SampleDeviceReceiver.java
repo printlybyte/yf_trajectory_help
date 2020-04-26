@@ -4,9 +4,11 @@ package com.yinfeng.yf_trajectory_help.mdm;//package com.yinfeng.yinfengtrajecto
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.yinfeng.yf_trajectory_help.R;
 import com.yinfeng.yf_trajectory_help.eventbus.EventBusUtils;
+import com.yinfeng.yf_trajectory_help.utils.PermissionUtilsx;
 
 
 public class SampleDeviceReceiver extends DeviceAdminReceiver {
@@ -23,14 +25,13 @@ public class SampleDeviceReceiver extends DeviceAdminReceiver {
     @Override
     public void onDisabled(Context context, Intent intent) {
         new EventBusUtils().send(2);
-//        Toast.makeText(context, "取消激活====", Toast.LENGTH_SHORT).show();
-
+        PermissionUtilsx.requestChanelActive();
     }
 
     @Override
     public CharSequence onDisableRequested(Context context, Intent intent) {
         // TODO Auto-generated method stub
-        new EventBusUtils().send(2);
+//        new EventBusUtils().send(2);
         return context.getString(R.string.disable_warning);
     }
 

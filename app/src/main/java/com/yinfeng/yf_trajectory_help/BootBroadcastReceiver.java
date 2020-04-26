@@ -1,9 +1,17 @@
 package com.yinfeng.yf_trajectory_help;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.yinfeng.yf_trajectory_help.utils.NotificationManagerUtils;
+
+import java.util.logging.Logger;
+
+import static com.yinfeng.yf_trajectory_help.utils.PermissionUtilsx.getSystemVersion;
 
 
 /**
@@ -16,12 +24,18 @@ import android.util.Log;
  * ============================================
  **/
 public class BootBroadcastReceiver extends BroadcastReceiver {
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
-        String action = intent.getAction();
-        Log.i("TESTRE", "onReceive : ");
-        if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-            startOneActivity(context);
+
+        try {
+            if (getSystemVersion() >= 1000) {
+                NotificationManagerUtils.startBootNotificationManager("请点击此处打开银丰轨迹助手", R.mipmap.ic_app_start_icon);
+            }else {
+                startOneActivity(context);
+            }
+        }catch (Exception ignored){
+            Toast.makeText(context, "助手开机广播错误", Toast.LENGTH_SHORT).show();
         }
     }
 

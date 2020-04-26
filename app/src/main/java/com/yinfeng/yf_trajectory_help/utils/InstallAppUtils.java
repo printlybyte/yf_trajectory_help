@@ -166,12 +166,18 @@ public class InstallAppUtils {
     }
 
     public static boolean openPackage(Context context, String packageName) {
-        Context pkgContext = getPackageContext(context, packageName);
-        Intent intent = getAppOpenIntentByPackageName(context, packageName);
-        if (pkgContext != null && intent != null) {
-            pkgContext.startActivity(intent);
-            return true;
+        try {
+            Context pkgContext = getPackageContext(context, packageName);
+            Intent intent = getAppOpenIntentByPackageName(context, packageName);
+            if (pkgContext != null && intent != null) {
+                pkgContext.startActivity(intent);
+                return true;
+            }
+
+        }catch (Exception r){
+            return false;
         }
+
         return false;
     }
 

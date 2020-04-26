@@ -185,7 +185,7 @@ public class PlayerMusicService extends Service {
                 getUpdateAndAliveTime();
             }
 
-            requestWakeLock();
+//            requestWakeLock();
             Log.i("testte", "mTimeReceiver keepaline");
         }
     };
@@ -305,7 +305,7 @@ public class PlayerMusicService extends Service {
 //        KeyguardManager.KeyguardLock kl = km.newKeyguardLock("unLock");
 //        //解锁
 //        kl.disableKeyguard();
-        requestWakeLock();
+//        requestWakeLock();
     }
 
 

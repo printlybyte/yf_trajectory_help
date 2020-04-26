@@ -23,6 +23,8 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 
+import com.yinfeng.yf_trajectory_help.SplashActivity;
+
 
 public class NotificationManagerUtils {
 
@@ -78,5 +80,54 @@ public class NotificationManagerUtils {
         }
     }
 
+    @SuppressLint("WrongConstant")
+    public static void startBootNotificationManager(String title, int idIco) {
+//        VibrateUtils.vibrate(500);
+        Context applicationContext = Latte.getApplicationContext();
+        NotificationManager notificationManager = (NotificationManager) applicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent intent = new Intent(applicationContext, SplashActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0);
+        long[] vibrate = {0, 500, 1000, 1500};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder notification = new Notification
+                    .Builder(applicationContext)
+                    .setContentTitle("通知")
+                    .setContentText(title)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(idIco)
+                    .setLargeIcon(BitmapFactory.decodeResource(applicationContext.getResources(), idIco))
+                    .setVibrate(vibrate)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setChannelId(applicationContext.getPackageName())
+                    .setSound(MediaStore.Audio.Media.INTERNAL_CONTENT_URI);
+            NotificationChannel channel = new NotificationChannel(
+                    applicationContext.getPackageName(),
+                    "银丰轨迹",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            notificationManager.createNotificationChannel(channel);
+            notificationManager.notify(0, notification.build());
+        } else {
+
+            Notification.Builder notification = new Notification
+                    .Builder(applicationContext)
+                    .setContentTitle("通知")
+                    .setContentText(title)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(idIco)
+                    .setLargeIcon(BitmapFactory.decodeResource(applicationContext.getResources(), idIco))
+                    .setVibrate(vibrate)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setWhen(System.currentTimeMillis())
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setSound(MediaStore.Audio.Media.INTERNAL_CONTENT_URI);
+            notificationManager.notify(0, notification.build());
+        }
+    }
 }
 

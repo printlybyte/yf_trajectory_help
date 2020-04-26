@@ -3,12 +3,22 @@ package com.yinfeng.yf_trajectory_help;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.support.annotation.NonNull;
 
 import com.blankj.utilcode.util.CrashUtils;
 import com.orhanobut.hawk.Hawk;
+import com.orhanobut.logger.CsvFormatStrategy;
+import com.orhanobut.logger.DiskLogAdapter;
+import com.orhanobut.logger.DiskLogStrategy;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
 import com.yinfeng.yf_trajectory_help.utils.Latte;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.io.File;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -36,7 +46,15 @@ public class App extends Application {
         OkHttpUtils.initClient(okHttpClient);
         Hawk.init(this).build();
         initFileCrash();
+
+        FormatStrategy formatStrategy = CsvFormatStrategy.newBuilder()
+                .tag("custom")
+                .build();
+
+        Logger.addLogAdapter(new DiskLogAdapter(formatStrategy));
     }
+
+
     /**
      * 本地crash 初始化
      */

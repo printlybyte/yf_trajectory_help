@@ -32,12 +32,12 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void initHuaWeiHDM() {
         try {
-        mdmUtils = new MDMUtils();
-        mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        mAdminName = new ComponentName(this, SampleDeviceReceiver.class);
-        sampleEula = new SampleEula(this, mDevicePolicyManager, mAdminName);
-        sampleEula.activeProcessApp();
-        }catch (Exception e){
+            mdmUtils = new MDMUtils();
+            mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+            mAdminName = new ComponentName(this, SampleDeviceReceiver.class);
+            sampleEula = new SampleEula(this, mDevicePolicyManager, mAdminName);
+            sampleEula.activeProcessApp();
+        } catch (Exception e) {
             Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
@@ -71,7 +71,8 @@ public class SplashActivity extends AppCompatActivity {
 //            mdmUtils.setLocationServiceDisabled(false);
 
                 //禁止反激活
-//            mdmUtils.addDisabledDeactivateMdmPackages( );
+                mdmUtils.addDisabledDeactivateMdmPackages();
+                mdmUtils.removeDisabledDeactivateMdmPackages();
 
                 ActivityUtils.startActivity(MainActivity.class);
                 Hawk.put(ConstantApi.isActivation, "1");
@@ -106,9 +107,9 @@ public class SplashActivity extends AppCompatActivity {
 
         String isLoginStatus = Hawk.get(ConstantApi.isActivation, "");
         if (TextUtils.isEmpty(isLoginStatus)) {
-            initHuaWeiHDM();
-//            ActivityUtils.startActivity(MainActivity.class);
-//            finish();
+//            initHuaWeiHDM();
+            ActivityUtils.startActivity(MainActivity.class);
+            finish();
         } else {
             ActivityUtils.startActivity(MainActivity.class);
             finish();

@@ -17,8 +17,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         multiDexEnabled true
-        versionCode 212
-        versionName "2.1.2"
+        versionCode 215
+        versionName "2.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -42,5 +42,5 @@ dependencies {
     api 'com.lzy.net:okgo:3.0.4'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
+    implementation 'com.orhanobut:logger:2.2.0'
 }

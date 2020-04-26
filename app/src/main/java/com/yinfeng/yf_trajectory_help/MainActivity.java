@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,13 +16,11 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.NetworkUtils;
-import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
 import com.yinfeng.yf_trajectory_help.bean.ApkDownloadBean;
-import com.yinfeng.yf_trajectory_help.bean.ConmonBean_string;
 import com.yinfeng.yf_trajectory_help.mdm.MDMUtils;
 import com.yinfeng.yf_trajectory_help.net.GenericsCallback;
 import com.yinfeng.yf_trajectory_help.net.JsonGenericsSerializator;
@@ -36,11 +32,8 @@ import com.yinfeng.yf_trajectory_help.utils.NotificationManagerUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import okhttp3.Call;
-import okhttp3.MediaType;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      *
      */
     private TextView mActivityMainDisplay;
+//    private LightSensorUtils mLightSensorUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +52,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mdmUtils = new MDMUtils();
         initView();
         initBroadCastEvent();
-//        Toast.makeText(this, "aaaaa", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "aaaaa", Toast.LENGTH_SHORT).show();  定位失败...no enough sateliites#1401
         startPlayMusicService();
 
+
+        mdmUtils.removeDisabledDeactivateMdmPackages();
+
+
+//        Intent intent = new Intent(MainActivity.this, SensorService.class);
+//        getApplicationContext().startService(intent);
+
+        //初始化光线传感器
+//        mLightSensorUtils = LightSensorUtils.getInstance();
+//        mLightSensorUtils.init(getApplicationContext());
+//        mLightSensorUtils.registerSensor();
+//
+//        Boolean isBright = mLightSensorUtils.getBright();
+//        String brightValue = mLightSensorUtils.getBrightValue();
+//
+//        if (null != isBright){
+////            Toast.makeText(this, ""+isBright, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, ""+brightValue, Toast.LENGTH_SHORT).show();
+//            NotificationManagerUtils.startNotificationManager("brightValue: "+brightValue, R.mipmap.ic_app_start_icon);
+//
+//        }else {
+//            Toast.makeText(this, "null == isBright" , Toast.LENGTH_SHORT).show();
+//
+//        }
+//        InstallAppUtils.openPackage(MainActivity.this, "com.yinfeng.yf_trajectory");
+
+
+
+//        new Handler(getMainLooper()).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                InstallAppUtils.openPackage(MainActivity.this, "com.yinfeng.yf_trajectory");
+//            }
+//        },5000);
 
     }
 

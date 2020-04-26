@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yinfeng.yf_trajectory_help">
+
     <!-- 开机广播 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SENSOR_INFO" />
+
+
+    <uses-permission android:name="android.permission.SENSOR_ENABLE" />
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
@@ -40,16 +45,17 @@
         android:roundIcon="@mipmap/ic_app_start_icon"
         android:supportsRtl="true"
         android:theme="@style/AppThemeBase">
+        <service
+            android:name=".service.SensorService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <activity
             android:name=".TestActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
@@ -83,12 +89,18 @@
             android:name="android.max_aspect"
             android:value="2.1" />
 
-        <receiver android:name=".BootBroadcastReceiver">
-            <intent-filter>
+        <receiver
+            android:name=".BootBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter android:priority="1000">
+
+                <!-- .接收启动完成的广播 -->
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.ACTION_REQUEST_SHUTDOWN" />
             </intent-filter>
         </receiver>
     </application>

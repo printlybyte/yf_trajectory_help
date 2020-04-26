@@ -15,7 +15,7 @@
     <string name="state_not_actived">该应用未激活</string>
     <string name="accept_btn">同意</string>
     <string name="exit_btn">退出</string>
-    <string name="disable_warning">取消激活后将导致本软件的部分功能无法正常工作，您确定要取消激活么？</string>
+    <string name="disable_warning">取消激活后将导致本软件的部分功能无法正常工作，将在后台记录，并通知人资部门，请谨慎操作</string>
     <string name="know">已阅读</string>
     <string name="not_show_anymore">不再提示</string>
     <string name="title_license">免责声明与软件许可协议</string>
